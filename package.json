@@ -1,0 +1,23 @@
+{
+  "name": "com.maapiid.save-system",
+  "version": "0.0.1",
+  "displayName": "Save System",
+  "description": "Simply save system",
+  "category": "Libraries",
+  "unity": "2022.2",
+  "unityRelease": "0b16",
+  "documentationUrl": "https://github.com/tatonkoduje/save-system/blob/main/README.md",
+  "changelogUrl": "https://github.com/tatonkoduje/save-system/changelog.html",
+  "licensesUrl": "https://github.com/tatonkoduje/save-system/blob/main/LICENSE",
+  "dependencies": {},
+  "keywords": [
+    "library",
+    "save",
+    "load"
+  ],
+  "author": {
+    "name": "taton",
+    "email": "tatonkoduje@gmail.com",
+    "url": "https://github.com/tatonkoduje"
+  }
+}
