@@ -1,4 +1,4 @@
-﻿namespace com.maapiid.savesystem.GameDataSystem
+﻿namespace com.maapiid.savesystem
 {
     public interface ISavableData
     {

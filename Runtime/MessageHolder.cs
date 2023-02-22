@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace com.maapiid.savesystem.GameDataSystem
+namespace com.maapiid.savesystem
 {
     public static class MessageHolder
     {

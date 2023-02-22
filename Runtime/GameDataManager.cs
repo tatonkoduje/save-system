@@ -1,4 +1,5 @@
-﻿using com.maapiid.savesystem.GameDataSystem;
+﻿using System.Collections.Generic;
+using com.maapiid.savesystem;
 
 // TODO: 1a. prepare data classes and save all
 // TODO: 1b. then load all data and match manually
@@ -29,16 +30,50 @@
     
 public class GameDataManager
 {
-    public static ISavableData Load()
+    private LoadManager _loadManager;
+    private SaveManager _saveManager;
+    
+    public GameDataManager()
     {
-        LoadManager lM = new LoadManager();
-        return lM.Load();
+        _loadManager = new LoadManager();
+        _saveManager = new SaveManager();
+    }
+    
+    public ISavableData Load()
+    {
+        return _loadManager.Load();
             
     }
-
-    public static void Save(ISavableData data)
+    public ISavableData LoadFrom(string filename)
     {
-        SaveManager sM = new SaveManager();
-        sM.Save(data);
+        return _loadManager.LoadFrom(filename);
+    }
+    
+    public Dictionary<string, ISavableData> LoadFrom(List<string> ids)
+    {
+        return _loadManager.LoadFrom(ids);
+    }
+    
+    
+    public void Save(ISavableData data)
+    {
+        _saveManager.Save(data);
+    }
+
+    public void Save(List<ISavableData> datas)
+    {
+        _saveManager.Save(datas);
+    }
+
+    
+
+    public void SaveTo(ISavableData data, string filename)
+    {
+        _saveManager.SaveTo(data, filename);
+    }
+    
+    public void SaveTo(Dictionary<string, ISavableData> datas)
+    {
+        _saveManager.SaveTo(datas);
     }
 }
