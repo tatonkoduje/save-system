@@ -32,12 +32,14 @@ public class GameDataManager
 {
     private LoadManager _loadManager;
     private SaveManager _saveManager;
-    
+
+   
     public GameDataManager()
     {
         _loadManager = new LoadManager();
         _saveManager = new SaveManager();
     }
+    
     
     public ISavableData Load()
     {

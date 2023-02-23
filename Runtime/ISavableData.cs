@@ -1,7 +1,9 @@
-﻿namespace com.maapiid.savesystem
+﻿using UnityEngine;
+
+namespace com.maapiid.savesystem
 {
     public interface ISavableData
     {
-        public bool IsSavable { get; set; }
+        public void Restore(MonoBehaviour mb_object);
     }
 }
