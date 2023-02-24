@@ -1,43 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace com.maapiid.savesystem
 {
     public class SavableEntity : MonoBehaviour
     {
-        [SerializeField] private string id = string.Empty;
-
         public string Id => id;
-
+        
+        [SerializeField] private string id = string.Empty;
         [ContextMenu("Generate Id")]
         private void GenerateId() => id = Guid.NewGuid().ToString();
 
         public object CaptureState()
         {
             var state = new Dictionary<string, object>();
-
-            foreach (var savable in GetComponents<ISavable>())
-            {
-                state[savable.GetType().ToString()] = savable.CaptureState();
-            }
-
+            GetComponents<ISavable>().ToList().ForEach(e => state[e.GetType().ToString()] = e.CaptureState());
             return state;
         }
 
         public void RestoreState(object state)
         {
-            var stateDictionary = state as Dictionary<string, object>;
-
-            foreach (var savable in GetComponents<ISavable>())
+            var stateDict = state as IDictionary<string, object>;
+            GetComponents<ISavable>().ToList().ForEach(e =>
             {
-                string typeName = savable.GetType().ToString();
-
-                if (stateDictionary.TryGetValue(typeName, out object value))
-                {
-                    savable.RestoreState(value);
-                }
-            }
+                var typeName = e.GetType().ToString();
+                if(stateDict!.TryGetValue(typeName, out var value)) e.RestoreState(value);
+            });
         }
     }
 }
