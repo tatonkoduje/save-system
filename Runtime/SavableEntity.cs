@@ -9,9 +9,7 @@ namespace com.maapiid.savesystem
     {
         public string Id => id;
         
-        [SerializeField] private string id = string.Empty;
-        [ContextMenu("Generate Id")]
-        private void GenerateId() => id = Guid.NewGuid().ToString();
+        [SerializeField] private string id = Guid.NewGuid().ToString();
 
         public object CaptureState()
         {
