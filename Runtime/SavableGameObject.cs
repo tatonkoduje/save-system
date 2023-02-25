@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace com.maapiid.savesystem
 {
-    public class SavableEntity : MonoBehaviour
+    public class SavableGameObject : MonoBehaviour
     {
         public string Id => id;
         

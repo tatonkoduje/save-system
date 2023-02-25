@@ -7,27 +7,32 @@ namespace com.maapiid.savesystem
 {
     public abstract class FileManager : Singleton<FileManager>
     {
-        private static string Path => $"{Application.persistentDataPath}/data.aru";
+        public static string Path { get; set; } = Application.persistentDataPath;
+        public static string Filename { get; set; } = "data.aru";
         
         internal static void SaveFile(object state)
         {
-            using var stream = File.Open(Path, FileMode.Create);
+            var path = Path + "/" + Filename;
+            
+            using var stream = File.Open(path, FileMode.Create);
             var formatter = new BinaryFormatter();
             formatter.Serialize(stream, state);
             stream.Close();
             
-            Debug.Log("Saved in " + Path);
+            Debug.Log("Saved in " + path);
         }
         
         internal static IDictionary<string, object> LoadFile()
         {
-            if (!File.Exists(Path))
+            var path = Path + "/" + Filename;
+            
+            if (!File.Exists(path))
             {
-                Debug.LogWarning("No saved files in location: " + Application.persistentDataPath);
+                Debug.LogWarning("Not found files in location: " + Application.persistentDataPath);
                 return new Dictionary<string, object>();
             }
 
-            using var stream = File.Open(Path, FileMode.Open);
+            using var stream = File.Open(path, FileMode.Open);
             var formatter = new BinaryFormatter();
             var state = formatter.Deserialize(stream) as IDictionary<string, object>;
             stream.Close();
